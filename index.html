@@ -316,7 +316,9 @@ body{
 
     <!-- HOME -->
     <section id="home" class="page active">
-
+<button class="add-main" onclick="enableNotifications()">
+    🔔 Notification চালু করুন
+</button>
         <div class="stats">
             <div class="stat">
                 <strong id="todayCount">0</strong>
@@ -792,6 +794,46 @@ function escapeHTML(text){
 setup();
 
 </script>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+        .then(() => {
+            console.log("DailyX notification service ready");
+        })
+        .catch(error => {
+            console.log("Service Worker Error:", error);
+        });
+}
 
+async function enableNotifications() {
+
+    if (!("Notification" in window)) {
+        alert("এই ফোন/ব্রাউজারে Notification সাপোর্ট নেই।");
+        return;
+    }
+
+    const permission = await Notification.requestPermission();
+
+    if (permission === "granted") {
+
+        if ("serviceWorker" in navigator) {
+
+            const registration =
+                await navigator.serviceWorker.ready;
+
+            registration.showNotification(
+                "DailyX 🔔",
+                {
+                    body: "মনে করিয়ে দেওয়ার Notification চালু হয়েছে।",
+                    icon: "https://nayrox27.github.io/dailyx/icon-192.png"
+                }
+            );
+        }
+
+    } else {
+        alert("Notification অনুমতি দেওয়া হয়নি।");
+    }
+}
+</script>
 </body>
 </html>
