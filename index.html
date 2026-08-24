@@ -3,231 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DailyX - আজকের কাজ</title>
+<meta name="theme-color" content="#2563eb">
+<link rel="manifest" href="manifest.json">
+
+<title>DailyX - মনে করিয়ে দিন</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
 }
 
-body {
-    background: #f5f7fb;
-    color: #1f2937;
-    min-height: 100vh;
+body{
+    background:#f5f7fb;
+    color:#172033;
+    padding-bottom:85px;
 }
 
-.header {
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    color: white;
-    padding: 25px 20px 30px;
-    border-radius: 0 0 28px 28px;
+.header{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    padding:28px 20px 32px;
+    border-radius:0 0 28px 28px;
 }
 
-.header h1 {
-    font-size: 27px;
-    margin-bottom: 8px;
+.header h1{
+    font-size:27px;
+    margin-bottom:7px;
 }
 
-.header p {
-    font-size: 15px;
-    opacity: 0.9;
+.header p{
+    opacity:.9;
+    font-size:14px;
 }
 
-.date-box {
-    margin-top: 20px;
-    background: rgba(255,255,255,0.15);
-    padding: 13px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
+.date{
+    margin-top:18px;
+    background:rgba(255,255,255,.16);
+    padding:13px;
+    border-radius:14px;
+    font-size:14px;
 }
 
-.date-box span {
-    font-size: 14px;
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:20px;
 }
 
-.container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
+.page{
+    display:none;
 }
 
-.section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.page.active{
+    display:block;
 }
 
-.section-title h2 {
-    font-size: 20px;
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
-.count {
-    background: #e0e7ff;
-    color: #4338ca;
-    padding: 6px 11px;
-    border-radius: 20px;
-    font-size: 13px;
+.title h2{
+    font-size:21px;
 }
 
-.task {
-    background: white;
-    border-radius: 18px;
-    padding: 17px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+.badge{
+    background:#e0e7ff;
+    color:#3730a3;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:13px;
 }
 
-.check {
-    width: 25px;
-    height: 25px;
-    border: 2px solid #2563eb;
-    border-radius: 50%;
-    cursor: pointer;
-    flex-shrink: 0;
+.task{
+    background:white;
+    padding:16px;
+    border-radius:18px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
-.task-info {
-    flex: 1;
+.check{
+    width:25px;
+    height:25px;
+    border:2px solid #2563eb;
+    border-radius:50%;
+    flex-shrink:0;
+    cursor:pointer;
 }
 
-.task-info h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
+.task-info{
+    flex:1;
 }
 
-.task-info p {
-    font-size: 13px;
-    color: #6b7280;
+.task-info h3{
+    font-size:16px;
+    margin-bottom:5px;
 }
 
-.delete {
-    border: none;
-    background: #fee2e2;
-    color: #dc2626;
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
+.task-info p{
+    color:#6b7280;
+    font-size:13px;
 }
 
-.completed .check {
-    background: #22c55e;
-    border-color: #22c55e;
-    position: relative;
+.completed .check{
+    background:#22c55e;
+    border-color:#22c55e;
 }
 
-.completed .check::after {
-    content: "✓";
-    color: white;
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    font-weight: bold;
+.completed .check:after{
+    content:"✓";
+    color:white;
+    margin-left:4px;
 }
 
-.completed h3 {
-    text-decoration: line-through;
-    color: #9ca3af;
+.completed h3{
+    text-decoration:line-through;
+    color:#9ca3af;
 }
 
-.empty {
-    text-align: center;
-    background: white;
-    padding: 35px 20px;
-    border-radius: 20px;
-    color: #6b7280;
+.delete{
+    border:0;
+    background:#fee2e2;
+    color:#dc2626;
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-.empty-icon {
-    font-size: 45px;
-    margin-bottom: 12px;
+.empty{
+    background:white;
+    padding:35px 20px;
+    text-align:center;
+    border-radius:20px;
+    color:#6b7280;
 }
 
-.add-btn {
-    position: fixed;
-    right: 22px;
-    bottom: 25px;
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 50%;
-    background: #2563eb;
-    color: white;
-    font-size: 30px;
-    box-shadow: 0 7px 20px rgba(37,99,235,0.35);
-    cursor: pointer;
+.empty-icon{
+    font-size:45px;
+    margin-bottom:10px;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+.add-main{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:15px;
+    border-radius:15px;
+    font-size:16px;
+    margin-bottom:18px;
+    cursor:pointer;
 }
 
-.modal-box {
-    background: white;
-    width: 100%;
-    max-width: 420px;
-    border-radius: 22px;
-    padding: 23px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:22px;
 }
 
-.modal-box h2 {
-    margin-bottom: 18px;
+.stat{
+    background:white;
+    padding:15px 8px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
 }
 
-.input-group {
-    margin-bottom: 15px;
+.stat strong{
+    display:block;
+    font-size:21px;
+    color:#2563eb;
+    margin-bottom:4px;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 14px;
-    font-weight: bold;
+.stat span{
+    font-size:12px;
+    color:#6b7280;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #d1d5db;
-    border-radius: 12px;
-    outline: none;
-    font-size: 15px;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:20;
 }
 
-.save-btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 13px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 5px;
+.modal-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:22px;
+    border-radius:22px;
 }
 
-.cancel-btn {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    background: #f3f4f6;
-    border-radius: 13px;
-    margin-top: 10px;
-    cursor: pointer;
+.modal-box h2{
+    margin-bottom:18px;
+}
+
+.input{
+    margin-bottom:14px;
+}
+
+.input label{
+    display:block;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.input input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+}
+
+.save{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    font-size:16px;
+}
+
+.cancel{
+    width:100%;
+    border:0;
+    background:#f3f4f6;
+    padding:13px;
+    border-radius:13px;
+    margin-top:9px;
+}
+
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:70px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -4px 15px rgba(0,0,0,.08);
+    z-index:10;
+}
+
+.nav{
+    border:0;
+    background:none;
+    color:#6b7280;
+    font-size:11px;
+    text-align:center;
+}
+
+.nav span{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+.nav.active{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.fab{
+    position:fixed;
+    right:20px;
+    bottom:88px;
+    width:57px;
+    height:57px;
+    border:0;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    font-size:29px;
+    box-shadow:0 7px 20px rgba(37,99,235,.35);
+    z-index:9;
 }
 </style>
 </head>
@@ -236,254 +308,490 @@ body {
 
 <header class="header">
     <h1 id="greeting">শুভ সকাল 👋</h1>
-    <p>আপনার দিনের কাজগুলো মনে রাখতে সাহায্য করবে DailyX</p>
-
-    <div class="date-box">
-        <span id="todayDate">আজকের তারিখ</span>
-    </div>
+    <p>আপনার গুরুত্বপূর্ণ কাজ মনে রাখতে DailyX</p>
+    <div class="date" id="date">আজকের তারিখ</div>
 </header>
 
 <main class="container">
 
-    <div class="section-title">
-        <h2>আজকের কাজ</h2>
-        <span class="count" id="taskCount">0 টি</span>
-    </div>
+    <!-- HOME -->
+    <section id="home" class="page active">
 
-    <div id="taskList"></div>
+        <div class="stats">
+            <div class="stat">
+                <strong id="todayCount">0</strong>
+                <span>আজকের কাজ</span>
+            </div>
+
+            <div class="stat">
+                <strong id="pendingCount">0</strong>
+                <span>বাকি</span>
+            </div>
+
+            <div class="stat">
+                <strong id="doneCount">0</strong>
+                <span>সম্পন্ন</span>
+            </div>
+        </div>
+
+        <div class="title">
+            <h2>আজকের কাজ</h2>
+            <span class="badge" id="homeBadge">0 টি</span>
+        </div>
+
+        <div id="homeTasks"></div>
+
+    </section>
+
+
+    <!-- TODAY -->
+    <section id="today" class="page">
+
+        <div class="title">
+            <h2>📅 আজকের কাজ</h2>
+            <span class="badge" id="todayBadge">0 টি</span>
+        </div>
+
+        <div id="todayTasks"></div>
+
+    </section>
+
+
+    <!-- ALL -->
+    <section id="all" class="page">
+
+        <div class="title">
+            <h2>📋 সব কাজ</h2>
+            <span class="badge" id="allBadge">0 টি</span>
+        </div>
+
+        <div id="allTasks"></div>
+
+    </section>
+
+
+    <!-- COMPLETED -->
+    <section id="completedPage" class="page">
+
+        <div class="title">
+            <h2>✅ সম্পন্ন কাজ</h2>
+            <span class="badge" id="completedBadge">0 টি</span>
+        </div>
+
+        <div id="completedTasks"></div>
+
+    </section>
 
 </main>
 
-<button class="add-btn" onclick="openModal()">+</button>
 
-<!-- Add Task Modal -->
+<!-- ADD BUTTON -->
+<button class="fab" onclick="openModal()">+</button>
+
+
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom">
+
+    <button class="nav active" onclick="showPage('home',this)">
+        <span>🏠</span>
+        হোম
+    </button>
+
+    <button class="nav" onclick="showPage('today',this)">
+        <span>📅</span>
+        আজকের কাজ
+    </button>
+
+    <button class="nav" onclick="openModal()">
+        <span>➕</span>
+        নতুন কাজ
+    </button>
+
+    <button class="nav" onclick="showPage('all',this)">
+        <span>📋</span>
+        সব কাজ
+    </button>
+
+    <button class="nav" onclick="showPage('completedPage',this)">
+        <span>✅</span>
+        সম্পন্ন
+    </button>
+
+</nav>
+
+
+<!-- ADD TASK MODAL -->
 <div class="modal" id="modal">
 
     <div class="modal-box">
 
         <h2>নতুন কাজ যোগ করুন</h2>
 
-        <div class="input-group">
+        <div class="input">
             <label>কাজের নাম</label>
-            <input type="text" id="taskName" placeholder="কাজের নাম লিখুন">
+            <input id="taskName" type="text" placeholder="কাজের নাম লিখুন">
         </div>
 
-        <div class="input-group">
+        <div class="input">
             <label>তারিখ</label>
-            <input type="date" id="taskDate">
+            <input id="taskDate" type="date">
         </div>
 
-        <div class="input-group">
+        <div class="input">
             <label>সময়</label>
-            <input type="time" id="taskTime">
+            <input id="taskTime" type="time">
         </div>
 
-        <button class="save-btn" onclick="addTask()">
+        <button class="save" onclick="addTask()">
             কাজ যোগ করুন
         </button>
 
-        <button class="cancel-btn" onclick="closeModal()">
+        <button class="cancel" onclick="closeModal()">
             বাতিল
         </button>
 
     </div>
+
 </div>
+
 
 <script>
 
-let tasks = JSON.parse(localStorage.getItem("dailyx_tasks")) || [];
+let tasks = JSON.parse(
+    localStorage.getItem("dailyx_tasks") || "[]"
+);
 
-const today = new Date();
 
-function getToday() {
-    return today.toISOString().split("T")[0];
+function todayDate(){
+
+    const d = new Date();
+
+    return d.getFullYear() + "-" +
+        String(d.getMonth()+1).padStart(2,"0") + "-" +
+        String(d.getDate()).padStart(2,"0");
 }
 
-function showDate() {
+
+function setup(){
+
+    const d = new Date();
 
     const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
     };
 
-    document.getElementById("todayDate").innerText =
-        today.toLocaleDateString("bn-BD", options);
-}
+    document.getElementById("date").innerText =
+        d.toLocaleDateString("bn-BD",options);
 
-function showGreeting() {
 
-    const hour = new Date().getHours();
+    let h = d.getHours();
 
-    let greeting;
-
-    if (hour < 12) {
-        greeting = "শুভ সকাল 👋";
-    } else if (hour < 17) {
-        greeting = "শুভ দুপুর 👋";
-    } else {
-        greeting = "শুভ সন্ধ্যা 👋";
+    if(h < 12){
+        document.getElementById("greeting").innerText =
+            "শুভ সকাল 👋";
+    }
+    else if(h < 17){
+        document.getElementById("greeting").innerText =
+            "শুভ দুপুর 👋";
+    }
+    else{
+        document.getElementById("greeting").innerText =
+            "শুভ সন্ধ্যা 👋";
     }
 
-    document.getElementById("greeting").innerText = greeting;
+    render();
+
 }
 
-function renderTasks() {
 
-    const list = document.getElementById("taskList");
+function save(){
 
-    list.innerHTML = "";
+    localStorage.setItem(
+        "dailyx_tasks",
+        JSON.stringify(tasks)
+    );
 
-    const todayTasks = tasks.filter(task => task.date === getToday());
-
-    document.getElementById("taskCount").innerText =
-        todayTasks.length + " টি";
-
-    if (todayTasks.length === 0) {
-
-        list.innerHTML = `
-            <div class="empty">
-                <div class="empty-icon">📋</div>
-                <h3>আজ কোনো কাজ নেই</h3>
-                <p>নতুন কাজ যোগ করতে নিচের + বাটনে চাপ দিন</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    todayTasks.forEach(task => {
-
-        const div = document.createElement("div");
-
-        div.className = "task " + (task.completed ? "completed" : "");
-
-        div.innerHTML = `
-            <div class="check" onclick="completeTask(${task.id})"></div>
-
-            <div class="task-info">
-                <h3>${task.name}</h3>
-                <p>🕐 ${task.time}</p>
-            </div>
-
-            <button class="delete"
-                onclick="deleteTask(${task.id})">
-                🗑
-            </button>
-        `;
-
-        list.appendChild(div);
-    });
 }
 
-function openModal() {
+
+function openModal(){
 
     document.getElementById("modal").style.display = "flex";
 
-    document.getElementById("taskDate").value = getToday();
+    document.getElementById("taskDate").value =
+        todayDate();
+
 }
 
-function closeModal() {
+
+function closeModal(){
 
     document.getElementById("modal").style.display = "none";
 
     document.getElementById("taskName").value = "";
     document.getElementById("taskTime").value = "";
+
 }
 
-function addTask() {
 
-    const name = document.getElementById("taskName").value.trim();
-    const date = document.getElementById("taskDate").value;
-    const time = document.getElementById("taskTime").value;
+function addTask(){
 
-    if (!name) {
-        alert("দয়া করে কাজের নাম লিখুন");
+    const name =
+        document.getElementById("taskName").value.trim();
+
+    const date =
+        document.getElementById("taskDate").value;
+
+    const time =
+        document.getElementById("taskTime").value;
+
+
+    if(!name){
+        alert("কাজের নাম লিখুন");
         return;
     }
 
-    if (!date) {
-        alert("দয়া করে তারিখ নির্বাচন করুন");
+    if(!date){
+        alert("তারিখ নির্বাচন করুন");
         return;
     }
 
-    if (!time) {
-        alert("দয়া করে সময় নির্বাচন করুন");
+    if(!time){
+        alert("সময় নির্বাচন করুন");
         return;
     }
 
-    const task = {
 
-        id: Date.now(),
+    tasks.push({
 
-        name: name,
+        id:Date.now(),
 
-        date: date,
+        name:name,
 
-        time: time,
+        date:date,
 
-        completed: false
+        time:time,
 
-    };
-
-    tasks.push(task);
-
-    localStorage.setItem(
-        "dailyx_tasks",
-        JSON.stringify(tasks)
-    );
-
-    closeModal();
-
-    renderTasks();
-}
-
-function completeTask(id) {
-
-    tasks = tasks.map(task => {
-
-        if (task.id === id) {
-            task.completed = !task.completed;
-        }
-
-        return task;
+        completed:false
 
     });
 
-    localStorage.setItem(
-        "dailyx_tasks",
-        JSON.stringify(tasks)
-    );
 
-    renderTasks();
+    save();
+
+    closeModal();
+
+    render();
+
 }
 
-function deleteTask(id) {
 
-    if (!confirm("এই কাজটি মুছে ফেলতে চান?")) {
+function completeTask(id){
+
+    tasks = tasks.map(t => {
+
+        if(t.id === id){
+            t.completed = !t.completed;
+        }
+
+        return t;
+
+    });
+
+    save();
+
+    render();
+
+}
+
+
+function deleteTask(id){
+
+    if(!confirm("এই কাজটি মুছে ফেলতে চান?")){
         return;
     }
 
-    tasks = tasks.filter(task => task.id !== id);
+    tasks = tasks.filter(t => t.id !== id);
 
-    localStorage.setItem(
-        "dailyx_tasks",
-        JSON.stringify(tasks)
-    );
+    save();
 
-    renderTasks();
+    render();
+
 }
 
-showDate();
-showGreeting();
-renderTasks();
+
+function taskHTML(task){
+
+    return `
+        <div class="task ${task.completed ? "completed" : ""}">
+
+            <div class="check"
+                 onclick="completeTask(${task.id})">
+            </div>
+
+            <div class="task-info">
+
+                <h3>${escapeHTML(task.name)}</h3>
+
+                <p>
+                    📅 ${task.date}
+                    &nbsp;&nbsp;
+                    ⏰ ${task.time}
+                </p>
+
+            </div>
+
+            <button class="delete"
+                    onclick="deleteTask(${task.id})">
+                🗑️
+            </button>
+
+        </div>
+    `;
+
+}
+
+
+function emptyHTML(text){
+
+    return `
+        <div class="empty">
+
+            <div class="empty-icon">📋</div>
+
+            <h3>${text}</h3>
+
+            <p style="margin-top:7px">
+                নতুন কাজ যোগ করতে + বাটনে চাপ দিন
+            </p>
+
+        </div>
+    `;
+
+}
+
+
+function renderList(id,list,message){
+
+    const box = document.getElementById(id);
+
+    if(list.length === 0){
+
+        box.innerHTML = emptyHTML(message);
+
+        return;
+
+    }
+
+    box.innerHTML =
+        list.map(taskHTML).join("");
+
+}
+
+
+function render(){
+
+    const today = todayDate();
+
+    const todayTasks =
+        tasks.filter(t => t.date === today);
+
+    const completed =
+        tasks.filter(t => t.completed);
+
+    const pending =
+        tasks.filter(t => !t.completed);
+
+
+    document.getElementById("todayCount").innerText =
+        todayTasks.length;
+
+    document.getElementById("pendingCount").innerText =
+        pending.length;
+
+    document.getElementById("doneCount").innerText =
+        completed.length;
+
+
+    document.getElementById("homeBadge").innerText =
+        todayTasks.length + " টি";
+
+    document.getElementById("todayBadge").innerText =
+        todayTasks.length + " টি";
+
+    document.getElementById("allBadge").innerText =
+        tasks.length + " টি";
+
+    document.getElementById("completedBadge").innerText =
+        completed.length + " টি";
+
+
+    renderList(
+        "homeTasks",
+        todayTasks,
+        "আজ কোনো কাজ নেই"
+    );
+
+
+    renderList(
+        "todayTasks",
+        todayTasks,
+        "আজ কোনো কাজ নেই"
+    );
+
+
+    renderList(
+        "allTasks",
+        tasks,
+        "কোনো কাজ যোগ করা হয়নি"
+    );
+
+
+    renderList(
+        "completedTasks",
+        completed,
+        "কোনো কাজ সম্পন্ন হয়নি"
+    );
+
+}
+
+
+function showPage(page,button){
+
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    document.getElementById(page)
+        .classList.add("active");
+
+
+    document.querySelectorAll(".nav")
+        .forEach(n => n.classList.remove("active"));
+
+    if(button){
+        button.classList.add("active");
+    }
+
+}
+
+
+function escapeHTML(text){
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+setup();
 
 </script>
 
 </body>
 </html>
-<head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2563eb">
-</head>
