@@ -1,839 +1,641 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#2563eb">
-<link rel="manifest" href="/dailyx/manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
 
-<title>DailyX - মনে করিয়ে দিন</title>
+  <title>DailyX - দৈনিক কাজ</title>
 
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body{
-    background:#f5f7fb;
-    color:#172033;
-    padding-bottom:85px;
-}
+    body {
+      font-family: Arial, "Noto Sans Bengali", sans-serif;
+      background: linear-gradient(160deg, #eff6ff, #f8fafc, #e0f2fe);
+      color: #0f172a;
+      min-height: 100vh;
+    }
 
-.header{
-    background:linear-gradient(135deg,#2563eb,#4f46e5);
-    color:white;
-    padding:28px 20px 32px;
-    border-radius:0 0 28px 28px;
-}
+    .app {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 18px;
+    }
 
-.header h1{
-    font-size:27px;
-    margin-bottom:7px;
-}
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-.header p{
-    opacity:.9;
-    font-size:14px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.date{
-    margin-top:18px;
-    background:rgba(255,255,255,.16);
-    padding:13px;
-    border-radius:14px;
-    font-size:14px;
-}
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.25);
+    }
 
-.container{
-    max-width:600px;
-    margin:auto;
-    padding:20px;
-}
+    .brand h1 {
+      font-size: 23px;
+    }
 
-.page{
-    display:none;
-}
+    .brand p {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 3px;
+    }
 
-.page.active{
-    display:block;
-}
+    .notification-btn {
+      width: 45px;
+      height: 45px;
+      border: none;
+      background: white;
+      border-radius: 15px;
+      font-size: 20px;
+      box-shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+      cursor: pointer;
+    }
 
-.title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb, #0ea5e9);
+      color: white;
+      border-radius: 26px;
+      padding: 25px;
+      margin-bottom: 18px;
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
+    }
 
-.title h2{
-    font-size:21px;
-}
+    .hero small {
+      opacity: 0.85;
+      font-size: 13px;
+    }
 
-.badge{
-    background:#e0e7ff;
-    color:#3730a3;
-    padding:6px 11px;
-    border-radius:20px;
-    font-size:13px;
-}
+    .hero h2 {
+      font-size: 27px;
+      margin: 8px 0;
+    }
 
-.task{
-    background:white;
-    padding:16px;
-    border-radius:18px;
-    margin-bottom:12px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
-}
+    .hero p {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
 
-.check{
-    width:25px;
-    height:25px;
-    border:2px solid #2563eb;
-    border-radius:50%;
-    flex-shrink:0;
-    cursor:pointer;
-}
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+    }
 
-.task-info{
-    flex:1;
-}
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 17px;
+    }
 
-.task-info h3{
-    font-size:16px;
-    margin-bottom:5px;
-}
+    label {
+      display: block;
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 7px;
+    }
 
-.task-info p{
-    color:#6b7280;
-    font-size:13px;
-}
+    textarea,
+    input {
+      width: 100%;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 15px;
+      outline: none;
+      font-family: inherit;
+    }
 
-.completed .check{
-    background:#22c55e;
-    border-color:#22c55e;
-}
+    textarea {
+      min-height: 85px;
+      resize: none;
+      margin-bottom: 14px;
+    }
 
-.completed .check:after{
-    content:"✓";
-    color:white;
-    margin-left:4px;
-}
+    textarea:focus,
+    input:focus {
+      border-color: #60a5fa;
+      background: white;
+    }
 
-.completed h3{
-    text-decoration:line-through;
-    color:#9ca3af;
-}
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
 
-.delete{
-    border:0;
-    background:#fee2e2;
-    color:#dc2626;
-    width:36px;
-    height:36px;
-    border-radius:10px;
-    cursor:pointer;
-}
+    .primary-btn {
+      width: 100%;
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    }
 
-.empty{
-    background:white;
-    padding:35px 20px;
-    text-align:center;
-    border-radius:20px;
-    color:#6b7280;
-}
+    .primary-btn:active {
+      transform: scale(0.98);
+    }
 
-.empty-icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
+    /* Tasks */
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eef2f7;
+    }
 
-.add-main{
-    width:100%;
-    border:0;
-    background:#2563eb;
-    color:white;
-    padding:15px;
-    border-radius:15px;
-    font-size:16px;
-    margin-bottom:18px;
-    cursor:pointer;
-}
+    .task:last-child {
+      border-bottom: none;
+    }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-bottom:22px;
-}
+    .task-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 14px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
 
-.stat{
-    background:white;
-    padding:15px 8px;
-    border-radius:16px;
-    text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
+    .task-info {
+      flex: 1;
+      min-width: 0;
+    }
 
-.stat strong{
-    display:block;
-    font-size:21px;
-    color:#2563eb;
-    margin-bottom:4px;
-}
+    .task-info strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
 
-.stat span{
-    font-size:12px;
-    color:#6b7280;
-}
+    .task-info span {
+      color: #64748b;
+      font-size: 12px;
+    }
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    z-index:20;
-}
+    .delete-btn {
+      border: none;
+      background: #fee2e2;
+      color: #dc2626;
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
 
-.modal-box{
-    width:100%;
-    max-width:420px;
-    background:white;
-    padding:22px;
-    border-radius:22px;
-}
+    .empty {
+      text-align: center;
+      color: #94a3b8;
+      padding: 18px 5px;
+      font-size: 14px;
+    }
 
-.modal-box h2{
-    margin-bottom:18px;
-}
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 12px;
+      padding: 5px 0 20px;
+    }
 
-.input{
-    margin-bottom:14px;
-}
+    @media (max-width: 360px) {
+      .app {
+        padding: 13px;
+      }
 
-.input label{
-    display:block;
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:7px;
-}
+      .hero h2 {
+        font-size: 23px;
+      }
 
-.input input{
-    width:100%;
-    padding:13px;
-    border:1px solid #d1d5db;
-    border-radius:12px;
-    font-size:15px;
-    outline:none;
-}
-
-.save{
-    width:100%;
-    border:0;
-    background:#2563eb;
-    color:white;
-    padding:14px;
-    border-radius:13px;
-    font-size:16px;
-}
-
-.cancel{
-    width:100%;
-    border:0;
-    background:#f3f4f6;
-    padding:13px;
-    border-radius:13px;
-    margin-top:9px;
-}
-
-.bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:70px;
-    background:white;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    box-shadow:0 -4px 15px rgba(0,0,0,.08);
-    z-index:10;
-}
-
-.nav{
-    border:0;
-    background:none;
-    color:#6b7280;
-    font-size:11px;
-    text-align:center;
-}
-
-.nav span{
-    display:block;
-    font-size:22px;
-    margin-bottom:3px;
-}
-
-.nav.active{
-    color:#2563eb;
-    font-weight:bold;
-}
-
-.fab{
-    position:fixed;
-    right:20px;
-    bottom:88px;
-    width:57px;
-    height:57px;
-    border:0;
-    border-radius:50%;
-    background:#2563eb;
-    color:white;
-    font-size:29px;
-    box-shadow:0 7px 20px rgba(37,99,235,.35);
-    z-index:9;
-}
-</style>
+      .input-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-    <h1 id="greeting">শুভ সকাল 👋</h1>
-    <p>আপনার গুরুত্বপূর্ণ কাজ মনে রাখতে DailyX</p>
-    <div class="date" id="date">আজকের তারিখ</div>
-</header>
+<div class="app">
 
-<main class="container">
+  <!-- Header -->
+  <div class="header">
 
-    <!-- HOME -->
-    <section id="home" class="page active">
-<button class="add-main" onclick="enableNotifications()">
-    🔔 Notification চালু করুন
-</button>
-        <div class="stats">
-            <div class="stat">
-                <strong id="todayCount">0</strong>
-                <span>আজকের কাজ</span>
-            </div>
+    <div class="brand">
+      <div class="logo">DX</div>
 
-            <div class="stat">
-                <strong id="pendingCount">0</strong>
-                <span>বাকি</span>
-            </div>
+      <div>
+        <h1>DailyX</h1>
+        <p>আপনার প্রতিদিনের কাজের সঙ্গী</p>
+      </div>
+    </div>
 
-            <div class="stat">
-                <strong id="doneCount">0</strong>
-                <span>সম্পন্ন</span>
-            </div>
-        </div>
-
-        <div class="title">
-            <h2>আজকের কাজ</h2>
-            <span class="badge" id="homeBadge">0 টি</span>
-        </div>
-
-        <div id="homeTasks"></div>
-
-    </section>
-
-
-    <!-- TODAY -->
-    <section id="today" class="page">
-
-        <div class="title">
-            <h2>📅 আজকের কাজ</h2>
-            <span class="badge" id="todayBadge">0 টি</span>
-        </div>
-
-        <div id="todayTasks"></div>
-
-    </section>
-
-
-    <!-- ALL -->
-    <section id="all" class="page">
-
-        <div class="title">
-            <h2>📋 সব কাজ</h2>
-            <span class="badge" id="allBadge">0 টি</span>
-        </div>
-
-        <div id="allTasks"></div>
-
-    </section>
-
-
-    <!-- COMPLETED -->
-    <section id="completedPage" class="page">
-
-        <div class="title">
-            <h2>✅ সম্পন্ন কাজ</h2>
-            <span class="badge" id="completedBadge">0 টি</span>
-        </div>
-
-        <div id="completedTasks"></div>
-
-    </section>
-
-</main>
-
-
-<!-- ADD BUTTON -->
-<button class="fab" onclick="openModal()">+</button>
-
-
-<!-- BOTTOM NAVIGATION -->
-<nav class="bottom">
-
-    <button class="nav active" onclick="showPage('home',this)">
-        <span>🏠</span>
-        হোম
+    <button class="notification-btn" onclick="enableNotification()">
+      🔔
     </button>
 
-    <button class="nav" onclick="showPage('today',this)">
-        <span>📅</span>
-        আজকের কাজ
-    </button>
-
-    <button class="nav" onclick="openModal()">
-        <span>➕</span>
-        নতুন কাজ
-    </button>
-
-    <button class="nav" onclick="showPage('all',this)">
-        <span>📋</span>
-        সব কাজ
-    </button>
-
-    <button class="nav" onclick="showPage('completedPage',this)">
-        <span>✅</span>
-        সম্পন্ন
-    </button>
-
-</nav>
+  </div>
 
 
-<!-- ADD TASK MODAL -->
-<div class="modal" id="modal">
+  <!-- Hero -->
+  <div class="hero">
 
-    <div class="modal-box">
+    <small id="todayDate"></small>
 
-        <h2>নতুন কাজ যোগ করুন</h2>
+    <h2>আজকের কাজ গুছিয়ে নিন</h2>
 
-        <div class="input">
-            <label>কাজের নাম</label>
-            <input id="taskName" type="text" placeholder="কাজের নাম লিখুন">
-        </div>
+    <p>
+      গুরুত্বপূর্ণ কাজ ভুলে যাবেন না।
+      সময়মতো রিমাইন্ডার নিয়ে আপনার দিনকে আরও সহজ করুন।
+    </p>
 
-        <div class="input">
-            <label>তারিখ</label>
-            <input id="taskDate" type="date">
-        </div>
+  </div>
 
-        <div class="input">
-            <label>সময়</label>
-            <input id="taskTime" type="time">
-        </div>
 
-        <button class="save" onclick="addTask()">
-            কাজ যোগ করুন
-        </button>
+  <!-- Add Task -->
+  <div class="card">
 
-        <button class="cancel" onclick="closeModal()">
-            বাতিল
-        </button>
+    <div class="card-title">
+      ➕ নতুন কাজ যোগ করুন
+    </div>
+
+    <label>কাজের নাম</label>
+
+    <textarea
+      id="taskName"
+      placeholder="যেমন: বিদ্যুৎ বিল দিতে হবে">
+    </textarea>
+
+
+    <div class="input-row">
+
+      <div>
+        <label>তারিখ</label>
+        <input type="date" id="taskDate">
+      </div>
+
+      <div>
+        <label>সময়</label>
+        <input type="time" id="taskTime">
+      </div>
 
     </div>
+
+
+    <button class="primary-btn" onclick="addTask()">
+      🔔 রিমাইন্ডার সেট করুন
+    </button>
+
+  </div>
+
+
+  <!-- Task List -->
+  <div class="card">
+
+    <div class="card-title">
+      📋 আমার কাজ
+    </div>
+
+    <div id="taskList"></div>
+
+  </div>
+
+
+  <div class="footer">
+    DailyX • আপনার সময়, আপনার কাজ
+  </div>
 
 </div>
 
 
 <script>
 
-let tasks = JSON.parse(
-    localStorage.getItem("dailyx_tasks") || "[]"
-);
+  /* Today's Date */
+
+  function showToday() {
+
+    const now = new Date();
+
+    const days = [
+      "রবিবার",
+      "সোমবার",
+      "মঙ্গলবার",
+      "বুধবার",
+      "বৃহস্পতিবার",
+      "শুক্রবার",
+      "শনিবার"
+    ];
+
+    const months = [
+      "জানুয়ারি",
+      "ফেব্রুয়ারি",
+      "মার্চ",
+      "এপ্রিল",
+      "মে",
+      "জুন",
+      "জুলাই",
+      "আগস্ট",
+      "সেপ্টেম্বর",
+      "অক্টোবর",
+      "নভেম্বর",
+      "ডিসেম্বর"
+    ];
+
+    document.getElementById("todayDate").textContent =
+      days[now.getDay()] +
+      ", " +
+      now.getDate() +
+      " " +
+      months[now.getMonth()] +
+      " " +
+      now.getFullYear();
+
+  }
+
+  showToday();
 
 
-function todayDate(){
+  /* Default Date & Time */
 
-    const d = new Date();
+  const now = new Date();
 
-    return d.getFullYear() + "-" +
-        String(d.getMonth()+1).padStart(2,"0") + "-" +
-        String(d.getDate()).padStart(2,"0");
-}
+  document.getElementById("taskDate").value =
+    now.toISOString().split("T")[0];
 
-
-function setup(){
-
-    const d = new Date();
-
-    const options = {
-        weekday:"long",
-        year:"numeric",
-        month:"long",
-        day:"numeric"
-    };
-
-    document.getElementById("date").innerText =
-        d.toLocaleDateString("bn-BD",options);
+  document.getElementById("taskTime").value =
+    String(now.getHours()).padStart(2, "0") +
+    ":" +
+    String(now.getMinutes()).padStart(2, "0");
 
 
-    let h = d.getHours();
+  /* Local Storage */
 
-    if(h < 12){
-        document.getElementById("greeting").innerText =
-            "শুভ সকাল 👋";
-    }
-    else if(h < 17){
-        document.getElementById("greeting").innerText =
-            "শুভ দুপুর 👋";
-    }
-    else{
-        document.getElementById("greeting").innerText =
-            "শুভ সন্ধ্যা 👋";
-    }
-
-    render();
-
-}
+  let tasks =
+    JSON.parse(localStorage.getItem("dailyxTasks")) || [];
 
 
-function save(){
+  /* Add Task */
 
-    localStorage.setItem(
-        "dailyx_tasks",
-        JSON.stringify(tasks)
-    );
-
-}
-
-
-function openModal(){
-
-    document.getElementById("modal").style.display = "flex";
-
-    document.getElementById("taskDate").value =
-        todayDate();
-
-}
-
-
-function closeModal(){
-
-    document.getElementById("modal").style.display = "none";
-
-    document.getElementById("taskName").value = "";
-    document.getElementById("taskTime").value = "";
-
-}
-
-
-function addTask(){
+  function addTask() {
 
     const name =
-        document.getElementById("taskName").value.trim();
+      document.getElementById("taskName").value.trim();
 
     const date =
-        document.getElementById("taskDate").value;
+      document.getElementById("taskDate").value;
 
     const time =
-        document.getElementById("taskTime").value;
+      document.getElementById("taskTime").value;
 
 
-    if(!name){
-        alert("কাজের নাম লিখুন");
-        return;
-    }
+    if (!name) {
 
-    if(!date){
-        alert("তারিখ নির্বাচন করুন");
-        return;
-    }
+      alert("দয়া করে কাজের নাম লিখুন।");
+      return;
 
-    if(!time){
-        alert("সময় নির্বাচন করুন");
-        return;
     }
 
 
-    tasks.push({
+    if (!date || !time) {
 
-        id:Date.now(),
+      alert("তারিখ এবং সময় নির্বাচন করুন।");
+      return;
 
-        name:name,
+    }
 
-        date:date,
 
-        time:time,
+    const task = {
 
-        completed:false
+      id: Date.now(),
+
+      name: name,
+
+      date: date,
+
+      time: time
+
+    };
+
+
+    tasks.push(task);
+
+    localStorage.setItem(
+      "dailyxTasks",
+      JSON.stringify(tasks)
+    );
+
+
+    document.getElementById("taskName").value = "";
+
+    renderTasks();
+
+    alert("✅ রিমাইন্ডার সেট হয়েছে!");
+
+  }
+
+
+  /* Show Tasks */
+
+  function renderTasks() {
+
+    const list =
+      document.getElementById("taskList");
+
+
+    if (tasks.length === 0) {
+
+      list.innerHTML =
+        '<div class="empty">এখনও কোনো কাজ যোগ করা হয়নি।</div>';
+
+      return;
+
+    }
+
+
+    tasks.sort(function(a, b) {
+
+      return (a.date + a.time)
+        .localeCompare(b.date + b.time);
 
     });
 
 
-    save();
-
-    closeModal();
-
-    render();
-
-}
+    list.innerHTML = "";
 
 
-function completeTask(id){
+    tasks.forEach(function(task) {
 
-    tasks = tasks.map(t => {
+      const div =
+        document.createElement("div");
 
-        if(t.id === id){
-            t.completed = !t.completed;
-        }
+      div.className = "task";
 
-        return t;
+
+      div.innerHTML = `
+
+        <div class="task-icon">
+          ⏰
+        </div>
+
+        <div class="task-info">
+
+          <strong>
+            ${escapeHTML(task.name)}
+          </strong>
+
+          <span>
+            📅 ${task.date}
+            &nbsp; • &nbsp;
+            ⏰ ${task.time}
+          </span>
+
+        </div>
+
+        <button
+          class="delete-btn"
+          onclick="deleteTask(${task.id})">
+
+          মুছুন
+
+        </button>
+
+      `;
+
+
+      list.appendChild(div);
 
     });
 
-    save();
-
-    render();
-
-}
+  }
 
 
-function deleteTask(id){
+  /* Delete Task */
 
-    if(!confirm("এই কাজটি মুছে ফেলতে চান?")){
-        return;
+  function deleteTask(id) {
+
+    if (!confirm("এই কাজটি মুছে ফেলবেন?")) {
+      return;
     }
 
-    tasks = tasks.filter(t => t.id !== id);
 
-    save();
+    tasks =
+      tasks.filter(function(task) {
 
-    render();
+        return task.id !== id;
 
-}
-
-
-function taskHTML(task){
-
-    return `
-        <div class="task ${task.completed ? "completed" : ""}">
-
-            <div class="check"
-                 onclick="completeTask(${task.id})">
-            </div>
-
-            <div class="task-info">
-
-                <h3>${escapeHTML(task.name)}</h3>
-
-                <p>
-                    📅 ${task.date}
-                    &nbsp;&nbsp;
-                    ⏰ ${task.time}
-                </p>
-
-            </div>
-
-            <button class="delete"
-                    onclick="deleteTask(${task.id})">
-                🗑️
-            </button>
-
-        </div>
-    `;
-
-}
+      });
 
 
-function emptyHTML(text){
-
-    return `
-        <div class="empty">
-
-            <div class="empty-icon">📋</div>
-
-            <h3>${text}</h3>
-
-            <p style="margin-top:7px">
-                নতুন কাজ যোগ করতে + বাটনে চাপ দিন
-            </p>
-
-        </div>
-    `;
-
-}
-
-
-function renderList(id,list,message){
-
-    const box = document.getElementById(id);
-
-    if(list.length === 0){
-
-        box.innerHTML = emptyHTML(message);
-
-        return;
-
-    }
-
-    box.innerHTML =
-        list.map(taskHTML).join("");
-
-}
-
-
-function render(){
-
-    const today = todayDate();
-
-    const todayTasks =
-        tasks.filter(t => t.date === today);
-
-    const completed =
-        tasks.filter(t => t.completed);
-
-    const pending =
-        tasks.filter(t => !t.completed);
-
-
-    document.getElementById("todayCount").innerText =
-        todayTasks.length;
-
-    document.getElementById("pendingCount").innerText =
-        pending.length;
-
-    document.getElementById("doneCount").innerText =
-        completed.length;
-
-
-    document.getElementById("homeBadge").innerText =
-        todayTasks.length + " টি";
-
-    document.getElementById("todayBadge").innerText =
-        todayTasks.length + " টি";
-
-    document.getElementById("allBadge").innerText =
-        tasks.length + " টি";
-
-    document.getElementById("completedBadge").innerText =
-        completed.length + " টি";
-
-
-    renderList(
-        "homeTasks",
-        todayTasks,
-        "আজ কোনো কাজ নেই"
+    localStorage.setItem(
+      "dailyxTasks",
+      JSON.stringify(tasks)
     );
 
 
-    renderList(
-        "todayTasks",
-        todayTasks,
-        "আজ কোনো কাজ নেই"
-    );
+    renderTasks();
+
+  }
 
 
-    renderList(
-        "allTasks",
-        tasks,
-        "কোনো কাজ যোগ করা হয়নি"
-    );
+  /* Security */
+
+  function escapeHTML(text) {
+
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
 
 
-    renderList(
-        "completedTasks",
-        completed,
-        "কোনো কাজ সম্পন্ন হয়নি"
-    );
+  /* Notification Permission */
 
-}
-
-
-function showPage(page,button){
-
-    document.querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
-
-    document.getElementById(page)
-        .classList.add("active");
-
-
-    document.querySelectorAll(".nav")
-        .forEach(n => n.classList.remove("active"));
-
-    if(button){
-        button.classList.add("active");
-    }
-
-}
-
-
-function escapeHTML(text){
-
-    const div = document.createElement("div");
-
-    div.textContent = text;
-
-    return div.innerHTML;
-
-}
-
-
-setup();
-
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js")
-        .then(() => {
-            console.log("DailyX notification service ready");
-        })
-        .catch(error => {
-            console.log("Service Worker Error:", error);
-        });
-}
-
-async function enableNotifications() {
+  async function enableNotification() {
 
     if (!("Notification" in window)) {
-        alert("এই ফোন/ব্রাউজারে Notification সাপোর্ট নেই।");
-        return;
+
+      alert(
+        "এই ব্রাউজারে নোটিফিকেশন সাপোর্ট নেই।"
+      );
+
+      return;
+
     }
 
-    const permission = await Notification.requestPermission();
+
+    const permission =
+      await Notification.requestPermission();
+
 
     if (permission === "granted") {
 
-        if ("serviceWorker" in navigator) {
+      new Notification("DailyX", {
 
-            const registration =
-                await navigator.serviceWorker.ready;
+        body:
+          "নোটিফিকেশন সফলভাবে চালু হয়েছে! 🔔"
 
-            registration.showNotification(
-                "DailyX 🔔",
-                {
-                    body: "মনে করিয়ে দেওয়ার Notification চালু হয়েছে।",
-                    icon: "https://nayrox27.github.io/dailyx/icon-192.png"
-                }
-            );
-        }
+      });
 
-    } else {
-        alert("Notification অনুমতি দেওয়া হয়নি।");
     }
-}
+
+    else {
+
+      alert(
+        "নোটিফিকেশনের অনুমতি দেওয়া হয়নি।"
+      );
+
+    }
+
+  }
+
+
+  /* Initial Load */
+
+  renderTasks();
+
 </script>
+
 </body>
 </html>
