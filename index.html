@@ -4,212 +4,837 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f5f7fc">
-
 <title>DailyX</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:#f5f7fc;
-  color:#172033;
+font-family:Arial,"Noto Sans Bengali",sans-serif;
+background:#f5f7fc;
+color:#172033;
 }
 
 .app{
-  max-width:520px;
-  margin:auto;
-  min-height:100vh;
-  padding:28px 20px 90px;
+max-width:520px;
+margin:auto;
+min-height:100vh;
+padding:26px 18px 95px;
 }
 
-/* HEADER */
-
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .greeting{
-  color:#7b8494;
-  font-size:16px;
-  margin-bottom:7px;
+font-size:15px;
+color:#7b8494;
+margin-bottom:5px;
 }
 
 .logo-title{
-  font-size:45px;
-  font-weight:700;
-  letter-spacing:-2px;
+font-size:43px;
+font-weight:700;
+letter-spacing:-2px;
 }
 
 .date{
-  color:#7b8494;
-  font-size:17px;
-  margin-top:15px;
+font-size:16px;
+color:#7b8494;
+margin-top:12px;
 }
 
 .dx-logo{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:#29479c;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:24px;
-  font-weight:bold;
+width:76px;
+height:76px;
+border-radius:50%;
+background:#29479c;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
+font-weight:700;
 }
 
 /* BUDGET */
 
 .budget{
-  margin-top:32px;
-  background:linear-gradient(135deg,#2948a3,#5368db);
-  color:white;
-  border-radius:32px;
-  padding:30px 26px;
-  box-shadow:0 18px 35px rgba(53,76,180,.22);
+margin-top:30px;
+background:linear-gradient(135deg,#2948a3,#5268da);
+color:white;
+border-radius:30px;
+padding:28px 24px;
+box-shadow:0 16px 32px #354cb52b;
 }
 
 .budget-label{
-  font-size:18px;
-  opacity:.9;
+font-size:17px;
+opacity:.92;
 }
 
 .total{
-  font-size:43px;
-  font-weight:bold;
-  margin:10px 0 25px;
+font-size:42px;
+font-weight:700;
+margin:9px 0 22px;
 }
 
 .budget-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
 .budget-box{
-  background:rgba(255,255,255,.15);
-  border-radius:20px;
-  padding:17px;
+background:#ffffff22;
+border-radius:20px;
+padding:16px;
 }
 
 .budget-box span{
-  display:block;
-  font-size:16px;
-  opacity:.9;
+display:block;
+font-size:15px;
 }
 
 .budget-box strong{
-  display:block;
-  font-size:24px;
-  margin-top:8px;
+display:block;
+font-size:22px;
+margin-top:7px;
 }
 
 /* QUICK TOOLS */
 
 .section{
-  margin-top:35px;
+margin-top:30px;
 }
 
 .section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
 }
 
 .section-title h2{
-  font-size:25px;
+font-size:24px;
 }
 
-.section-title a{
-  color:#29479c;
-  font-size:15px;
+.section-title button{
+border:0;
+background:transparent;
+color:#29479c;
+font-size:15px;
 }
 
 .tools{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
 }
 
 .tool{
-  background:white;
-  border-radius:22px;
-  padding:18px 7px;
-  text-align:center;
-  box-shadow:0 7px 20px rgba(20,30,60,.06);
-  cursor:pointer;
+border:0;
+background:white;
+border-radius:21px;
+padding:17px 5px;
+box-shadow:0 7px 20px #14203c0c;
+text-align:center;
+color:#172033;
 }
 
 .tool-icon{
-  font-size:31px;
-  margin-bottom:10px;
+font-size:29px;
+margin-bottom:9px;
 }
 
 .tool-name{
-  font-size:14px;
+font-size:14px;
 }
 
-/* TASKS */
+/* TASK */
 
 .task{
-  background:white;
-  border-radius:23px;
-  padding:20px;
-  margin-bottom:14px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  box-shadow:0 7px 20px rgba(20,30,60,.05);
+background:white;
+border-radius:22px;
+padding:18px;
+margin-bottom:13px;
+display:flex;
+align-items:center;
+gap:13px;
+box-shadow:0 7px 20px #14203c0b;
 }
 
-.checkbox{
-  width:37px;
-  height:37px;
-  border:3px solid #c6cedc;
-  border-radius:11px;
-  background:white;
-  flex-shrink:0;
-  cursor:pointer;
+.check{
+width:36px;
+height:36px;
+border:3px solid #c6cedc;
+border-radius:11px;
+background:white;
+flex:none;
+position:relative;
 }
 
-.task-content{
-  flex:1;
+.task-main{
+flex:1;
+min-width:0;
 }
 
 .task-title{
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:7px;
+font-size:17px;
+font-weight:700;
+word-break:break-word;
 }
 
 .task-meta{
-  color:#9098a6;
-  font-size:14px;
+color:#9299a6;
+font-size:13px;
+margin-top:5px;
 }
 
 .completed .task-title{
-  text-decoration:line-through;
-  color:#9ca3af;
+text-decoration:line-through;
+color:#9da4af;
 }
 
-.completed .checkbox{
-  background:#29479c;
-  border-color:#29479c;
-  position:relative;
+.completed .check{
+background:#29479c;
+border-color:#29479c;
 }
 
-.completed .checkbox:after{
-  content:"✓";
-  color:white;
-  position:absolute;
-  left:8px;
-  top:
+.completed .check:after{
+content:"✓";
+position:absolute;
+color:white;
+font-weight:700;
+font-size:20px;
+left:7px;
+top:2px;
+}
+
+.delete{
+border:0;
+background:#fee2e2;
+color:#dc2626;
+border-radius:9px;
+padding:7px 8px;
+}
+
+/* EMPTY */
+
+.empty{
+background:white;
+border-radius:22px;
+padding:32px 15px;
+text-align:center;
+color:#9aa2ae;
+box-shadow:0 7px 20px #14203c0b;
+}
+
+/* ADD BUTTON */
+
+.add{
+position:fixed;
+right:22px;
+bottom:92px;
+width:62px;
+height:62px;
+border:0;
+border-radius:50%;
+background:#2864df;
+color:white;
+font-size:34px;
+box-shadow:0 12px 28px #2864df55;
+}
+
+/* NAVIGATION */
+
+.nav{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+height:78px;
+background:white;
+border-top:1px solid #e7eaf0;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:20;
+}
+
+.nav-item{
+border:0;
+background:transparent;
+color:#858c98;
+font-size:12px;
+text-align:center;
+}
+
+.nav-item.active{
+color:#29479c;
+}
+
+.nav-icon{
+font-size:24px;
+margin-bottom:3px;
+}
+
+/* MOBILE */
+
+@media(max-width:370px){
+
+.app{
+padding-left:14px;
+padding-right:14px;
+}
+
+.logo-title{
+font-size:37px;
+}
+
+.dx-logo{
+width:66px;
+height:66px;
+}
+
+.tools{
+gap:6px;
+}
+
+.tool{
+padding:14px 3px;
+}
+
+.tool-name{
+font-size:12px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div>
+
+<div class="greeting">
+Good morning 👋
+</div>
+
+<div class="logo-title">
+DailyX
+</div>
+
+<div class="date" id="date">
+</div>
+
+</div>
+
+<div class="dx-logo">
+DX
+</div>
+
+</header>
+
+
+<!-- MONTHLY EXPENSE -->
+
+<section class="budget">
+
+<div class="budget-label">
+এই মাসের খরচ
+</div>
+
+<div class="total">
+৳ 3,250
+</div>
+
+<div class="budget-row">
+
+<div class="budget-box">
+
+<span>
+আজকের খরচ
+</span>
+
+<strong>
+৳ 350
+</strong>
+
+</div>
+
+<div class="budget-box">
+
+<span>
+বাকি বাজেট
+</span>
+
+<strong>
+৳ 6,750
+</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- QUICK TOOLS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+Quick Tools
+</h2>
+
+<button onclick="showTools()">
+সব দেখুন
+</button>
+
+</div>
+
+
+<div class="tools">
+
+<button class="tool" onclick="notes()">
+
+<div class="tool-icon">
+📝
+</div>
+
+<div class="tool-name">
+Notes
+</div>
+
+</button>
+
+
+<button class="tool" onclick="tasks()">
+
+<div class="tool-icon">
+✅
+</div>
+
+<div class="tool-name">
+Tasks
+</div>
+
+</button>
+
+
+<button class="tool" onclick="reminder()">
+
+<div class="tool-icon">
+⏰
+</div>
+
+<div class="tool-name">
+Reminder
+</div>
+
+</button>
+
+
+<button class="tool" onclick="expense()">
+
+<div class="tool-icon">
+💰
+</div>
+
+<div class="tool-name">
+Expense
+</div>
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- TODAY TASKS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>
+আজকের কাজ
+</h2>
+
+<button id="remaining">
+0টি বাকি
+</button>
+
+</div>
+
+<div id="taskList">
+
+<div class="empty">
+
+এখনো কোনো কাজ যোগ করা হয়নি।
+
+<br><br>
+
+নিচের + বাটনে চাপ দিয়ে নতুন কাজ যোগ করুন।
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ADD -->
+
+<button class="add" onclick="addTask()">
++
+</button>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="nav">
+
+<button class="nav-item active">
+
+<div class="nav-icon">
+🏠
+</div>
+
+Home
+
+</button>
+
+
+<button class="nav-item" onclick="tasks()">
+
+<div class="nav-icon">
+✅
+</div>
+
+Tasks
+
+</button>
+
+
+<button class="nav-item" onclick="notes()">
+
+<div class="nav-icon">
+📝
+</div>
+
+Notes
+
+</button>
+
+
+<button class="nav-item" onclick="expense()">
+
+<div class="nav-icon">
+💰
+</div>
+
+Expense
+
+</button>
+
+
+<button class="nav-item" onclick="profile()">
+
+<div class="nav-icon">
+👤
+</div>
+
+Profile
+
+</button>
+
+</nav>
+
+
+<script>
+
+/* DATE */
+
+const today = new Date();
+
+const days = [
+"রবিবার",
+"সোমবার",
+"মঙ্গলবার",
+"বুধবার",
+"বৃহস্পতিবার",
+"শুক্রবার",
+"শনিবার"
+];
+
+const months = [
+"জানুয়ারি",
+"ফেব্রুয়ারি",
+"মার্চ",
+"এপ্রিল",
+"মে",
+"জুন",
+"জুলাই",
+"আগস্ট",
+"সেপ্টেম্বর",
+"অক্টোবর",
+"নভেম্বর",
+"ডিসেম্বর"
+];
+
+document.getElementById("date").innerText =
+days[today.getDay()] +
+", " +
+today.getDate() +
+" " +
+months[today.getMonth()] +
+" " +
+today.getFullYear() +
+" • আপনার দিনটি সুন্দর হোক";
+
+
+/* TASKS */
+
+let taskList =
+JSON.parse(
+localStorage.getItem("dailyx_tasks")
+) || [];
+
+
+function addTask(){
+
+const name =
+prompt("কাজের নাম লিখুন:");
+
+if(!name){
+return;
+}
+
+taskList.push({
+
+id:Date.now(),
+
+name:name,
+
+completed:false
+
+});
+
+saveTasks();
+
+}
+
+
+function saveTasks(){
+
+localStorage.setItem(
+"dailyx_tasks",
+JSON.stringify(taskList)
+);
+
+renderTasks();
+
+}
+
+
+function renderTasks(){
+
+const list =
+document.getElementById("taskList");
+
+if(taskList.length === 0){
+
+list.innerHTML =
+'<div class="empty">এখনো কোনো কাজ যোগ করা হয়নি।<br><br>নিচের + বাটনে চাপ দিয়ে নতুন কাজ যোগ করুন।</div>';
+
+}else{
+
+list.innerHTML = "";
+
+taskList.forEach(function(task){
+
+const div =
+document.createElement("div");
+
+div.className =
+"task " +
+(task.completed ? "completed" : "");
+
+
+div.innerHTML = `
+
+<button
+class="check"
+onclick="toggleTask(${task.id})">
+</button>
+
+<div class="task-main">
+
+<div class="task-title">
+${escapeHTML(task.name)}
+</div>
+
+<div class="task-meta">
+আজ • Personal
+</div>
+
+</div>
+
+<button
+class="delete"
+onclick="deleteTask(${task.id})">
+
+মুছুন
+
+</button>
+
+`;
+
+list.appendChild(div);
+
+});
+
+}
+
+
+const remaining =
+taskList.filter(
+t => !t.completed
+).length;
+
+
+document.getElementById(
+"remaining"
+).innerText =
+remaining + "টি বাকি";
+
+}
+
+
+function toggleTask(id){
+
+taskList =
+taskList.map(function(task){
+
+if(task.id === id){
+
+task.completed =
+!task.completed;
+
+}
+
+return task;
+
+});
+
+saveTasks();
+
+}
+
+
+function deleteTask(id){
+
+taskList =
+taskList.filter(
+task => task.id !== id
+);
+
+saveTasks();
+
+}
+
+
+function escapeHTML(text){
+
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* OPTIONS */
+
+function notes(){
+
+alert(
+"📝 Notes অপশন পরের ধাপে তৈরি করব।"
+);
+
+}
+
+
+function tasks(){
+
+document
+.getElementById("taskList")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function reminder(){
+
+alert(
+"⏰ Reminder অপশন পরের ধাপে তৈরি করব।"
+);
+
+}
+
+
+function expense(){
+
+alert(
+"💰 Expense অপশন পরের ধাপে তৈরি করব।"
+);
+
+}
+
+
+function profile(){
+
+alert(
+"👤 Profile অপশন পরের ধাপে তৈরি করব।"
+);
+
+}
+
+
+function showTools(){
+
+alert(
+"📝 Notes\n✅ Tasks\n⏰ Reminder\n💰 Expense"
+);
+
+}
+
+
+/* START */
+
+renderTasks();
+
+</script>
+
+</body>
+</html>
