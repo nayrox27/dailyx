@@ -1,1 +1,0 @@
-DailyX complete PWA project. Upload all files to your GitHub Pages repository root. Notifications are reliable while the app is active; fully closed-app scheduled alarms require native Android alarm services.
